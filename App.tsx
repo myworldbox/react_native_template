@@ -1,23 +1,33 @@
 import * as init from './src/init/init'
 
-const Stack = init.react_navigation_native_stack.createNativeStackNavigator();
+var UserContext;
 
 const App = () => {
+
+  const Stack = init.react_navigation_native_stack.createNativeStackNavigator();
+  UserContext = init.react.createContext(init.dispatcher());
+
   return (
-    <init.react_navigation_native.NavigationContainer>
-      <Stack.Navigator>
+    <UserContext.Provider value={init.dispatcher()}>
 
-        {Object.keys(init.screen).map((child: any, i: any) => {
+      <init.react_navigation_native.NavigationContainer>
+        <Stack.Navigator>
 
-          return <Stack.Screen
-            name={child}
-            component={init.screen[child]}
-          />
-        })}
+          {Object.keys(init.screen).map((child: any, i: any) => {
 
-      </Stack.Navigator>
-    </init.react_navigation_native.NavigationContainer>
+            return <Stack.Screen
+              name={child}
+              component={init.screen[child]}
+            />
+          })}
+
+        </Stack.Navigator>
+      </init.react_navigation_native.NavigationContainer>
+    </UserContext.Provider>
+
   );
 };
+
+export { UserContext }
 
 export default App

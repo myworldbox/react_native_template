@@ -1,5 +1,9 @@
+import * as init from '../init/init'
+
+import { UserContext } from '../../App';
+
 import React from 'react';
-import type {PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -22,7 +26,7 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
+function Section({ children, title }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -48,15 +52,34 @@ function Section({children, title}: SectionProps): JSX.Element {
   );
 }
 
-function Splash(): JSX.Element {
+function Splash({ navigation, route }: any): JSX.Element {
+
+  var inject = init.dispatcher();
+
+  var context = init.react.useContext(UserContext)
+
+  init.react.useEffect(()=>{
+
+      inject.dispatch()
+      console.log("context ---> " , context)
+  }, [])
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  init.react.useEffect(() => {
+    console.log("route ---> ", route["params"]["state"]["project"]," \n\ninject ---> ", inject.state["project"])
+  }, [inject]);
+
+
   return (
     <SafeAreaView style={backgroundStyle}>
+
+      <Text>{"ok ---> " + route["params"]["state"]["project"] + " - " + inject.state["project"]} </Text>
+
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}

@@ -10,10 +10,50 @@ var screen = {
     splash: splash.default
 }
 
+var creator = {
+
+    project: "init",
+
+    path: "",
+
+    json: {},
+
+    email: {},
+
+    message: "",
+
+    total_member: 0,
+
+    firebase: {
+        user: "",
+        confirmation: "",
+        recaptcha_verifier: "",
+        phone_verified: false,
+        email_verified: false,
+    },
+
+    render: false,
+    phone_render: false,
+    email_render: false,
+    phone_counter: 0,
+    email_counter: 0,
+
+    data: []
+}
+
+var dispatcher = () => {
+
+    var [state, dispatch] = react.useReducer((state: any) => ({ ...state }), creator)
+
+    return { state, dispatch }
+}
+
 export {
     react,
     react_navigation_native,
     react_navigation_native_stack,
 
-    screen
+    screen,
+    creator,
+    dispatcher
 }

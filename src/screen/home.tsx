@@ -1,4 +1,8 @@
-import React from 'react';
+import * as init from '../init/init'
+import { UserContext } from '../../App';
+
+
+import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
 import {
     SafeAreaView,
@@ -50,6 +54,17 @@ function Section({ children, title }: SectionProps): JSX.Element {
 }
 
 function Home({ navigation }: any): JSX.Element {
+
+    var inject = init.dispatcher();
+
+    var context = init.react.useContext(UserContext)
+
+    init.react.useEffect(()=>{
+
+        console.log(context)
+        inject.dispatch()
+    }, [])
+    
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
@@ -67,7 +82,26 @@ function Home({ navigation }: any): JSX.Element {
                 style={backgroundStyle}>
                 <Header />
 
-                <Button title='ok' onPress={(e) => { navigation.navigate('splash', { name: 'Jane' }) }}></Button>
+                <Button title='okay' onPress={(e) => {
+                    e.preventDefault()
+
+                    inject.state['project'] = "okay";
+                    inject.dispatch()
+                    navigation.navigate('splash', { state: inject.state });
+
+                }}></Button>
+
+                <Button title='123' onPress={(e) => {
+                    e.preventDefault()
+
+                    inject.state['project'] = "123";
+                    inject.dispatch()
+                    navigation.navigate('splash', { state: inject.state });
+
+                }}></Button>
+
+                <Text>{inject.state['project']} </Text>
+
                 <View
                     style={{
                         backgroundColor: isDarkMode ? Colors.black : Colors.white,
