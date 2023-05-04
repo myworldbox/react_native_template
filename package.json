@@ -6,10 +6,11 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "npx kill-port 8081 && npx react-native start",
     "test": "jest",
     "commit": "npm run commit:npm",
-    "commit:npm": "git add . && git commit -a -m %npm_config_comment% && git push"
+    "commit:npm": "git add . && git commit -a -m %npm_config_comment% && git push",
+    "fresh": "git fetch && git pull"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.6",

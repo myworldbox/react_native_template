@@ -1,7 +1,5 @@
 import * as init from '../init/init'
 
-import { UserContext } from '../../App';
-
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 import {
@@ -52,17 +50,10 @@ function Section({ children, title }: SectionProps): JSX.Element {
   );
 }
 
-function Splash({ navigation, route }: any): JSX.Element {
+function Info({ navigation, route }: any): JSX.Element {
 
   var inject = init.dispatcher();
-
-  var context = init.react.useContext(UserContext)
-
-  init.react.useEffect(()=>{
-
-      inject.dispatch()
-      console.log("context ---> " , context)
-  }, [])
+  var context: any = init.react.useContext(init.context.value)
 
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -71,45 +62,35 @@ function Splash({ navigation, route }: any): JSX.Element {
   };
 
   init.react.useEffect(() => {
-    console.log("route ---> ", route["params"]["state"]["project"]," \n\ninject ---> ", inject.state["project"])
+    console.log("route ---> ", route["params"], " \n\ninject ---> ", context.state['path'])
   }, [inject]);
 
+  var Main = <SafeAreaView style={backgroundStyle}>
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
 
-      <Text>{"ok ---> " + route["params"]["state"]["project"] + " - " + inject.state["project"]} </Text>
+    <init.react_native.Button title='path' onPress={(e) => {
+      e.preventDefault()
 
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>Splash.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+      context.state['path'] += "-";
+      inject.dispatch()
+
+    }}></init.react_native.Button>
+
+    <init.react_native.Button title='path' onPress={(e) => {
+      e.preventDefault()
+
+      context.state['path'] += "-";
+
+    }}></init.react_native.Button>
+
+    <Text>{"context.state['path']: " + context.state['path']} </Text>
+
+    <Section title="Step One">
+    </Section>
+  </SafeAreaView>
+
+
+  return Main
 }
 
 const styles = StyleSheet.create({
@@ -131,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Splash;
+export default Info;

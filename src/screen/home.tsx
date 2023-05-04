@@ -1,6 +1,4 @@
 import * as init from '../init/init'
-import { UserContext } from '../../App';
-
 
 import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
@@ -56,15 +54,8 @@ function Section({ children, title }: SectionProps): JSX.Element {
 function Home({ navigation }: any): JSX.Element {
 
     var inject = init.dispatcher();
+    var context: any = init.react.useContext(init.context.value)
 
-    var context = init.react.useContext(UserContext)
-
-    init.react.useEffect(()=>{
-
-        console.log(context)
-        inject.dispatch()
-    }, [])
-    
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
@@ -82,25 +73,22 @@ function Home({ navigation }: any): JSX.Element {
                 style={backgroundStyle}>
                 <Header />
 
-                <Button title='okay' onPress={(e) => {
+                <Button title='navigation' onPress={(e) => {
                     e.preventDefault()
 
-                    inject.state['project'] = "okay";
-                    inject.dispatch()
-                    navigation.navigate('splash', { state: inject.state });
+                    navigation.navigate('Info', { });
 
                 }}></Button>
 
-                <Button title='123' onPress={(e) => {
+                <Button title='no navigation' onPress={(e) => {
                     e.preventDefault()
 
-                    inject.state['project'] = "123";
+                    context.state['path'] += "-";
                     inject.dispatch()
-                    navigation.navigate('splash', { state: inject.state });
 
                 }}></Button>
 
-                <Text>{inject.state['project']} </Text>
+                <Text>{"context.state['path']: " + context.state['path']}</Text>
 
                 <View
                     style={{
@@ -110,16 +98,6 @@ function Home({ navigation }: any): JSX.Element {
                         Edit <Text style={styles.highlight}>Home.tsx</Text> to change this
                         screen and then come back to see your edits.
                     </Section>
-                    <Section title="See Your Changes">
-                        <ReloadInstructions />
-                    </Section>
-                    <Section title="Debug">
-                        <DebugInstructions />
-                    </Section>
-                    <Section title="Learn More">
-                        Read the docs to discover what to do next:
-                    </Section>
-                    <LearnMoreLinks />
                 </View>
             </ScrollView>
         </SafeAreaView>
