@@ -71,12 +71,12 @@ function Info({ navigation, route }: any): JSX.Element {
     <init.react_native.Button title='path' onPress={(e) => {
       e.preventDefault()
 
-      context.state['path'] += "-";
+      inject.state['path'] += "-";
       inject.dispatch()
 
     }}></init.react_native.Button>
 
-    <Text>{"context.state['path']: " + context.state['path']} </Text>
+    <Text>{"context.state['path']: " + inject.state['path']} </Text>
 
     <Section title="Step One">
     </Section>
