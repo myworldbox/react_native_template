@@ -76,13 +76,6 @@ function Info({ navigation, route }: any): JSX.Element {
 
     }}></init.react_native.Button>
 
-    <init.react_native.Button title='path' onPress={(e) => {
-      e.preventDefault()
-
-      context.state['path'] += "-";
-
-    }}></init.react_native.Button>
-
     <Text>{"context.state['path']: " + context.state['path']} </Text>
 
     <Section title="Step One">
