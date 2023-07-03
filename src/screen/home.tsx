@@ -10,7 +10,8 @@ import {
     Text,
     useColorScheme,
     View,
-    Button
+    Button,
+    Dimensions
 } from 'react-native';
 
 import {
@@ -20,36 +21,13 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import ScrollAnimation from '../animation/ScrollAnimation';
 
 type SectionProps = PropsWithChildren<{
     title: string;
 }>;
 
-function Section({ children, title }: SectionProps): JSX.Element {
-    const isDarkMode = useColorScheme() === 'dark';
-    return (
-        <View style={styles.sectionContainer}>
-            <Text
-                style={[
-                    styles.sectionTitle,
-                    {
-                        color: isDarkMode ? Colors.white : Colors.black,
-                    },
-                ]}>
-                {title}
-            </Text>
-            <Text
-                style={[
-                    styles.sectionDescription,
-                    {
-                        color: isDarkMode ? Colors.light : Colors.dark,
-                    },
-                ]}>
-                {children}
-            </Text>
-        </View>
-    );
-}
+var { width, height } = Dimensions.get('window')
 
 function Home({ navigation }: any): JSX.Element {
 
@@ -65,7 +43,7 @@ function Home({ navigation }: any): JSX.Element {
     return (
         <SafeAreaView style={backgroundStyle}>
             <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+                barStyle={!isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
             <ScrollView
@@ -76,7 +54,7 @@ function Home({ navigation }: any): JSX.Element {
                 <Button title='navigation' onPress={(e) => {
                     e.preventDefault()
 
-                    navigation.navigate('Info', { });
+                    navigation.navigate('Info', {});
 
                 }}></Button>
 
@@ -94,12 +72,9 @@ function Home({ navigation }: any): JSX.Element {
                     style={{
                         backgroundColor: isDarkMode ? Colors.black : Colors.white,
                     }}>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>Home.tsx</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
                 </View>
             </ScrollView>
+
         </SafeAreaView>
     );
 }

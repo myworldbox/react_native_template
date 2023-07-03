@@ -4,8 +4,8 @@ import * as react_native from 'react-native';
 import * as react_navigation_native from '@react-navigation/native';
 import * as react_navigation_native_stack from '@react-navigation/native-stack';
 
-import * as Home from '../screen/Home'
-import * as Info from '../screen/Info'
+import * as Home from '../screen/home'
+import * as Info from '../screen/info'
 
 var context: any = {
     value: undefined,
@@ -28,6 +28,8 @@ var creator = {
     email: {},
 
     message: "",
+
+    temp: [],
 
     total_member: 0,
 
