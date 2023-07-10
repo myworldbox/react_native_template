@@ -17,7 +17,7 @@ var screen: any = {
     Info: Info.default
 }
 
-var creator = {
+var creator: any = {
 
     project: "init",
 

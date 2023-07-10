@@ -35,7 +35,7 @@ var container = (_: any) => {
     borderColor: 'white'
   }}>
     {
-      _.prop ? _.child(_.prop) : _.child
+      _.child
     }
   </View>
 }
@@ -46,15 +46,15 @@ function Info({ navigation, route }: any): JSX.Element {
   var context: any = init.react.useContext(init.context.value)
 
   inject.state.temp = [{
-    width: 1, height: 0.2, child: <Text>1</Text>, prop: null
+    width: 1, height: 0.2, child: <Text>1</Text>
   }, {
-    width: 1, height: 0.2, child: <Text>2</Text>, prop: null
+    width: 1, height: 0.2, child: <Text>2</Text>
   }, {
-    width: 1, height: 0.2, child: <Text>3</Text>, prop: null
+    width: 1, height: 0.2, child: <Text>3</Text>
   }, {
-    width: 1, height: 0.2, child: <Text>4</Text>, prop: null
+    width: 1, height: 0.2, child: <Text>4</Text>
   }, {
-    width: 1, height: 0.2, child: <Text>5</Text>, prop: null
+    width: 1, height: 0.2, child: <Text>5</Text>
   },]
 
   const isDarkMode = useColorScheme() === 'dark';
@@ -84,9 +84,7 @@ function Info({ navigation, route }: any): JSX.Element {
 
     <Text>{"context.state['path']: " + inject.state['path']} </Text>
 
-    {
-      inject.state.temp && inject.state.temp.map((_: any) => container(_))
-    }
+
 
   </View>
 
