@@ -20,6 +20,7 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import ScrollableText from './ScrollableText';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -64,42 +65,7 @@ function Home({ navigation }: any): JSX.Element {
 
     return (
         <SafeAreaView style={backgroundStyle}>
-            <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                backgroundColor={backgroundStyle.backgroundColor}
-            />
-            <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}>
-                <Header />
-
-                <Button title='navigation' onPress={(e) => {
-                    e.preventDefault()
-
-                    navigation.navigate('Info', { });
-
-                }}></Button>
-
-                <Button title='no navigation' onPress={(e) => {
-                    e.preventDefault()
-
-                    context.state['path'] += "-";
-                    inject.dispatch()
-
-                }}></Button>
-
-                <Text>{"context.state['path']: " + context.state['path']}</Text>
-
-                <View
-                    style={{
-                        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-                    }}>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>Home.tsx</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                </View>
-            </ScrollView>
+            <ScrollableText></ScrollableText>
         </SafeAreaView>
     );
 }

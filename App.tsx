@@ -3,10 +3,10 @@ import * as init from './src/init/init'
 const App = () => {
 
   const Stack = init.react_navigation_native_stack.createNativeStackNavigator();
-  init.context.value = init.react.createContext(init.dispatcher());
+  init.context.value = init.react.createContext(init.useInject());
 
   return (
-    <init.context.value.Provider value={init.dispatcher()}>
+    <init.context.value.Provider value={init.useInject()}>
 
       <init.react_navigation_native.NavigationContainer>
         <Stack.Navigator>

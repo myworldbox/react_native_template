@@ -52,7 +52,7 @@ function Section({ children, title }: SectionProps): JSX.Element {
 
 function Info({ navigation, route }: any): JSX.Element {
 
-  var inject = init.dispatcher();
+  var inject = init.useInject();
   var context: any = init.react.useContext(init.context.value)
 
   const isDarkMode = useColorScheme() === 'dark';
