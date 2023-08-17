@@ -1,13 +1,19 @@
-
 import * as react from 'react';
 import * as react_native from 'react-native';
 import * as react_navigation_native from '@react-navigation/native';
 import * as react_navigation_native_stack from '@react-navigation/native-stack';
 
-import * as Home from '../screen/Home'
-import * as Info from '../screen/Info'
+import * as react_redux from 'react-redux'
+import * as reduxjs from '@reduxjs/toolkit'
 
-var context: any = {
+import * as Home from '../screen/home'
+import * as Info from '../screen/info'
+
+import * as context from '../global/context'
+import * as redux from '../global/redux'
+import * as variable from '../global/variable'
+
+var writable: any = {
     value: undefined,
     writable: true
 }
@@ -17,53 +23,20 @@ var screen: any = {
     Info: Info.default
 }
 
-var creator = {
-
-    project: "init",
-
-    path: "",
-
-    json: {},
-
-    email: {},
-
-    message: "",
-
-    total_member: 0,
-
-    firebase: {
-        user: "",
-        confirmation: "",
-        recaptcha_verifier: "",
-        phone_verified: false,
-        email_verified: false,
-    },
-
-    render: false,
-    phone_render: false,
-    email_render: false,
-    phone_counter: 0,
-    email_counter: 0,
-
-    data: []
-}
-
-var dispatcher = () => {
-
-    var [state, dispatch] = react.useReducer((state: any) => ({ ...state }), creator)
-
-    return { state, dispatch }
-}
-
 export {
     react,
     react_native,
     react_navigation_native,
     react_navigation_native_stack,
 
+    react_redux,
+    reduxjs,
+
     context,
+    redux,
 
     screen,
-    creator,
-    dispatcher
+    variable,
+
+    writable
 }

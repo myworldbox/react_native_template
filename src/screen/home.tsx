@@ -10,7 +10,8 @@ import {
     Text,
     useColorScheme,
     View,
-    Button
+    Button,
+    Dimensions
 } from 'react-native';
 
 import {
@@ -20,42 +21,18 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import ScrollableText from './ScrollableText';
+import ScrollAnimation from '../animation/ScrollAnimation';
 
 type SectionProps = PropsWithChildren<{
     title: string;
 }>;
 
-function Section({ children, title }: SectionProps): JSX.Element {
-    const isDarkMode = useColorScheme() === 'dark';
-    return (
-        <View style={styles.sectionContainer}>
-            <Text
-                style={[
-                    styles.sectionTitle,
-                    {
-                        color: isDarkMode ? Colors.white : Colors.black,
-                    },
-                ]}>
-                {title}
-            </Text>
-            <Text
-                style={[
-                    styles.sectionDescription,
-                    {
-                        color: isDarkMode ? Colors.light : Colors.dark,
-                    },
-                ]}>
-                {children}
-            </Text>
-        </View>
-    );
-}
+var { width, height } = Dimensions.get('window')
 
 function Home({ navigation }: any): JSX.Element {
 
-    var inject = init.dispatcher();
-    var context: any = init.react.useContext(init.context.value)
+    var inject = init.context.context();
+    var context: any = init.react.useContext(init.writable.value)
 
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -65,7 +42,39 @@ function Home({ navigation }: any): JSX.Element {
 
     return (
         <SafeAreaView style={backgroundStyle}>
-            <ScrollableText></ScrollableText>
+            <StatusBar
+                barStyle={!isDarkMode ? 'light-content' : 'dark-content'}
+                backgroundColor={backgroundStyle.backgroundColor}
+            />
+            <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={backgroundStyle}>
+                <Header />
+
+                <Button title='navigation' onPress={(e) => {
+                    e.preventDefault()
+
+                    navigation.navigate('Info', {});
+
+                }}></Button>
+
+                <Button title='no navigation' onPress={(e) => {
+                    e.preventDefault()
+
+                    context.state['path'] += "-";
+                    inject.dispatch()
+
+                }}></Button>
+
+                <Text>{"context.state['path']: " + context.state['path']}</Text>
+
+                <View
+                    style={{
+                        backgroundColor: isDarkMode ? Colors.black : Colors.white,
+                    }}>
+                </View>
+            </ScrollView>
+
         </SafeAreaView>
     );
 }
