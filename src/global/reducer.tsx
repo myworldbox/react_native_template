@@ -4,10 +4,11 @@ type Action = { type: 'any'; payload: any };
 
 const reducer = (state: any = init.variable, action: Action) => {
 
-    console.log(Object.keys(action), action)
     switch (action.type) {
         case 'any': {
             const { name, value } = action.payload;
+
+            console.log("reducer", name, value)
             return {
                 ...state,
                 [name]: value,

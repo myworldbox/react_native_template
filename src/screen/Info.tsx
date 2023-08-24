@@ -43,6 +43,7 @@ var container = (_: any) => {
 function Info({ navigation, route }: any): JSX.Element {
 
   var context = init.context.default();
+  var redux = init.redux.default();
 
   context.state.temp = [{
     width: 1, height: 0.2, child: <Text>1</Text>
@@ -62,10 +63,6 @@ function Info({ navigation, route }: any): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  init.react.useEffect(() => {
-    console.log("route ---> ", route["params"], " \n\ncontext ---> ", context.state['path'])
-  }, [context]);
-
   var Main = <View style={{
     flex: 1,
     flexDirection: 'column',
@@ -75,13 +72,20 @@ function Info({ navigation, route }: any): JSX.Element {
 
     <init.react_native.Button title='path' onPress={(e) => {
       e.preventDefault()
-      
-      context.dispatch('path', context.state.path += '-')
+
+      redux.dispatch('path', (redux.state.path ?? "") + "-")
+      redux.dispatch('phone_counter', (redux.state.phone_counter ?? 0) + 1)
+
+      context.dispatch('path', (context.state.path ?? "") + "-")
+      context.dispatch('phone_counter', (context.state.phone_counter ?? 0) + 1)
 
     }}></init.react_native.Button>
 
-    <Text>{"writable.state['path']: " + context.state['path']} </Text>
 
+    <Text>{"context['path']: " + context.state['path']}</Text>
+    <Text>{"context['phone_counter']: " + context.state['phone_counter']}</Text>
+    <Text>{"redux['path']: " + redux.state.path}</Text>
+    <Text>{"redux['phone_counter']: " + redux.state.phone_counter}</Text>
 
 
   </View>
