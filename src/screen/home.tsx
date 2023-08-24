@@ -31,7 +31,7 @@ var { width, height } = Dimensions.get('window')
 
 function Home({ navigation }: any): JSX.Element {
 
-    var context = init.context.default();
+    var context = init.react.useContext(init.writable.value)// init.context.default();
     var redux = init.redux.default();
 
     init.react.useEffect(() => {

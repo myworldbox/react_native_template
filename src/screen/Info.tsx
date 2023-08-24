@@ -42,20 +42,8 @@ var container = (_: any) => {
 
 function Info({ navigation, route }: any): JSX.Element {
 
-  var context = init.context.default();
+  var context = init.react.useContext(init.writable.value)// init.context.default();
   var redux = init.redux.default();
-
-  context.state.temp = [{
-    width: 1, height: 0.2, child: <Text>1</Text>
-  }, {
-    width: 1, height: 0.2, child: <Text>2</Text>
-  }, {
-    width: 1, height: 0.2, child: <Text>3</Text>
-  }, {
-    width: 1, height: 0.2, child: <Text>4</Text>
-  }, {
-    width: 1, height: 0.2, child: <Text>5</Text>
-  },]
 
   const isDarkMode = useColorScheme() === 'dark';
 
