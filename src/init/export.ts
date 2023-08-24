@@ -10,6 +10,8 @@ import * as Home from '../screen/home'
 import * as Info from '../screen/info'
 
 import * as context from '../global/context'
+import * as dispatch from '../global/dispatch'
+import * as reducer from '../global/reducer'
 import * as redux from '../global/redux'
 import * as variable from '../global/variable'
 
@@ -33,10 +35,12 @@ export {
     reduxjs,
 
     context,
+    dispatch,
+    reducer,
     redux,
+    variable,
 
     screen,
-    variable,
 
     writable
 }

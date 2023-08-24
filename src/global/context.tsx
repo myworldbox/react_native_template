@@ -1,12 +1,10 @@
-import * as init from '../init/init'
+import * as init from '../init/export'
 
 var context = () => {
 
-    var [state, dispatch] = init.react.useReducer((state: any) => ({ ...state }), init.creator.creator)
+    var [state, dispatch]: any = init.react.useReducer(init.reducer.default, init.variable)
 
     return { state, dispatch }
 }
 
-export {
-    context
-}
+export default context

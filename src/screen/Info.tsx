@@ -1,4 +1,4 @@
-import * as init from '../init/init'
+import * as init from '../init/export'
 
 import React from 'react';
 import type { PropsWithChildren } from 'react';
@@ -42,10 +42,9 @@ var container = (_: any) => {
 
 function Info({ navigation, route }: any): JSX.Element {
 
-  var inject = init.useInject();
-  var context: any = init.react.useContext(init.context.value)
+  var context = init.context.default();
 
-  inject.state.temp = [{
+  context.state.temp = [{
     width: 1, height: 0.2, child: <Text>1</Text>
   }, {
     width: 1, height: 0.2, child: <Text>2</Text>
@@ -64,8 +63,8 @@ function Info({ navigation, route }: any): JSX.Element {
   };
 
   init.react.useEffect(() => {
-    console.log("route ---> ", route["params"], " \n\ninject ---> ", context.state['path'])
-  }, [inject]);
+    console.log("route ---> ", route["params"], " \n\ncontext ---> ", context.state['path'])
+  }, [context]);
 
   var Main = <View style={{
     flex: 1,
@@ -76,13 +75,12 @@ function Info({ navigation, route }: any): JSX.Element {
 
     <init.react_native.Button title='path' onPress={(e) => {
       e.preventDefault()
-
-      inject.state['path'] += "-";
-      inject.dispatch()
+      
+      context.dispatch('path', context.state.path += '-')
 
     }}></init.react_native.Button>
 
-    <Text>{"context.state['path']: " + inject.state['path']} </Text>
+    <Text>{"writable.state['path']: " + context.state['path']} </Text>
 
 
 

@@ -1,4 +1,4 @@
-import * as init from '../init/init'
+import * as init from '../init/export'
 
 import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
@@ -31,8 +31,13 @@ var { width, height } = Dimensions.get('window')
 
 function Home({ navigation }: any): JSX.Element {
 
-    var inject = init.context.context();
-    var context: any = init.react.useContext(init.writable.value)
+    var context = init.context.default();
+    var redux = init.redux.default();
+    var writable: any = init.react.useContext(init.writable.value)
+
+    init.react.useEffect(() => {
+        console.log(redux.state.path, context.state.path)
+    }, [redux.state, context.state])
 
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -61,12 +66,15 @@ function Home({ navigation }: any): JSX.Element {
                 <Button title='no navigation' onPress={(e) => {
                     e.preventDefault()
 
-                    context.state['path'] += "-";
-                    inject.dispatch()
+                    // redux.dispatch('path', "fuhk")
+
+                    context.dispatch('path', context.state.path += "-")
 
                 }}></Button>
 
-                <Text>{"context.state['path']: " + context.state['path']}</Text>
+                <Text>{"context['path']: " + writable.state['path']}</Text>
+
+                <Text>{"redux['path']: " + redux.state.path}</Text>
 
                 <View
                     style={{

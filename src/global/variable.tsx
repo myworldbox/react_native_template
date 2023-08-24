@@ -1,4 +1,4 @@
-var creator: any = {
+var variable: any = {
 
     project: "init",
 
@@ -31,6 +31,4 @@ var creator: any = {
     data: []
 }
 
-export {
-    creator
-}
+export default variable
