@@ -6,6 +6,12 @@ import * as react_navigation_native_stack from '@react-navigation/native-stack';
 import * as react_redux from 'react-redux'
 import * as reduxjs from '@reduxjs/toolkit'
 
+import * as variable_list from '../element/variable_list'
+
+var element: any = {
+    variable_list
+}
+
 import * as Home from '../screen/home'
 import * as Info from '../screen/info'
 
@@ -31,13 +37,14 @@ export {
     react_native,
     react_navigation_native,
     react_navigation_native_stack,
-
     react_redux,
     reduxjs,
 
+    element,
+
     context,
     redux,
-    
+
     dispatch,
     reducer,
     variable,

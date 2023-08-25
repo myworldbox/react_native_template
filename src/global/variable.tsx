@@ -1,12 +1,12 @@
 var variable: any = {
 
-    project: "init",
+    project: 0,
 
-    path: "",
+    path: 0,
 
-    json: {},
+    json: "",
 
-    email: {},
+    email: "",
 
     message: "",
 

@@ -29,8 +29,12 @@ function Home({ navigation }: any): JSX.Element {
     var redux = init.redux.redux();
 
     init.react.useEffect(() => {
-        console.log("redux ---> ", redux.state.path, "\ncontext ---> ", context.state.path)
-    }, [redux.state, context.state])
+
+        if (context.state && redux.state) {
+
+        }
+
+    }, [context.state, redux.state])
 
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -59,18 +63,17 @@ function Home({ navigation }: any): JSX.Element {
                 <Button title='no navigation' onPress={(e) => {
                     e.preventDefault()
 
-                    redux.dispatch('path', (redux.state.path ?? "") + "-")
-                    redux.dispatch('phone_counter', (redux.state.phone_counter ?? 0) + 1)
+                    redux.dispatch('project', (redux.state.project ?? 0) + 1)
+                    redux.dispatch('path', (redux.state.path ?? 0) + 1)
 
-                    context.dispatch('path', (context.state.path ?? "") + "-")
-                    context.dispatch('phone_counter', (context.state.phone_counter ?? 0) + 1)
+                    context.dispatch('json', (context.state.json ?? "") + "-")
+                    context.dispatch('email', (context.state.email ?? "") + "-")
 
                 }}></Button>
 
-                <Text>{"context['path']: " + context.state['path']}</Text>
-                <Text>{"context['phone_counter']: " + context.state['phone_counter']}</Text>
-                <Text>{"redux['path']: " + redux.state.path}</Text>
-                <Text>{"redux['phone_counter']: " + redux.state.phone_counter}</Text>
+                {
+                    init.element.variable_list.default()
+                }
 
                 <View
                     style={{

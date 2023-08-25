@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <init.react_redux.Provider store={redux_store}>
-      <init.writable.value.Provider value={init.context.reducer()}>
+      <init.writable.value.Provider value={init.context.creator()}>
 
         <init.react_navigation_native.NavigationContainer>
           <Stack.Navigator>

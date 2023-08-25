@@ -52,12 +52,9 @@ function Info({ navigation, route }: any): JSX.Element {
 
     }}></init.react_native.Button>
 
-
-    <init.react_native.Text>{"context['path']: " + context.state['path']}</init.react_native.Text>
-    <init.react_native.Text>{"context['phone_counter']: " + context.state['phone_counter']}</init.react_native.Text>
-    <init.react_native.Text>{"redux['path']: " + redux.state.path}</init.react_native.Text>
-    <init.react_native.Text>{"redux['phone_counter']: " + redux.state.phone_counter}</init.react_native.Text>
-
+    {
+      init.element.variable_list.default()
+    }
 
   </init.react_native.View>
 

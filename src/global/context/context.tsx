@@ -9,8 +9,9 @@ var store = () => {
     return init.react.createContext(init.variable.default)
 }
 
-var reducer = () => {
+var creator = () => {
 
+    console.log("hey ", init.variable.default)
     var [state, dispatcher]: any = init.react.useReducer(init.reducer.default, init.variable)
 
     return { state, dispatch: (name: any, value: any) => init.dispatch.default(dispatcher, name, value) }
@@ -19,5 +20,5 @@ var reducer = () => {
 export {
     store,
     context,
-    reducer
+    creator
 }
