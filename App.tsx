@@ -1,11 +1,11 @@
 import * as init from './src/init/export'
 
+init.writable.value = init.react.createContext(init.variable.default);
+const store = init.reduxjs.configureStore({ reducer: init.reducer.default })
+
 const App = () => {
 
   const Stack = init.react_navigation_native_stack.createNativeStackNavigator();
-  init.writable.value = init.react.createContext(init.context.default());
-
-  const store = init.reduxjs.configureStore({ reducer: init.reducer.default })
 
   return (
     <init.react_redux.Provider store={store}>
