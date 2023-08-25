@@ -6,26 +6,24 @@ var variable_list = () => {
     var redux = init.redux.redux();
 
     return <init.react_native.View style={{ width: '100%', flexDirection: 'row' }}>
+        {
+            [context, redux].map((stack: any) => {
 
-        <init.react_native.View style={{ width: '50%' }}>
-            <init.react_native.Text>Context</init.react_native.Text>
-            {
-                context && context.state && Object.keys(context.state.default).map((key: any) => {
-                    console.log(key)
-                    return <init.react_native.Text>{`${key} <---> ${context.state[key]}`}</init.react_native.Text>
-                })
-            }
-        </init.react_native.View>
+                return <init.react_native.View style={{ width: '50%' }}>
+                    
+                    <init.react_native.Text>{Object.keys({ stack })[0]}</init.react_native.Text>
+                    {
+                        stack && stack.state && Object.keys(stack.state).map((child: any) => {
 
-        <init.react_native.View style={{ width: '50%' }}>
-            <init.react_native.Text>Redux</init.react_native.Text>
-            {
-                redux && redux.state && Object.keys(redux.state.default).map((key: any) => {
-                    console.log(key)
-                    return <init.react_native.Text>{`${key} <---> ${redux.state[key]}`}</init.react_native.Text>
-                })
-            }
-        </init.react_native.View>
+                            return Object.keys(stack.state[child]).map((key: any) => {
+
+                                return <init.react_native.Text>{`${key} <---> ${stack.state[child][key]}`}</init.react_native.Text>
+                            })
+                        })
+                    }
+                </init.react_native.View>
+            })
+        }
 
     </init.react_native.View>
 }

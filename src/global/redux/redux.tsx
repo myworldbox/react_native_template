@@ -9,7 +9,7 @@ var redux = () => {
     var state = init.react_redux.useSelector((state: any) => state);
     var dispatcher = init.react_redux.useDispatch()
 
-    return { state, dispatch: (name: any, value: any) => init.dispatch.default(dispatcher, name, value) }
+    return { state, dispatch: (value: any) => init.dispatch.default(dispatcher, value) }
 }
 
 export {

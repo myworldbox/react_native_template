@@ -2,20 +2,20 @@ import * as init from '../init/export'
 
 type Action = { type: 'any'; payload: any };
 
-const reducer = (state: any = init.variable, action: Action) => {
+const reducer = (state: any = init.variable.default, action: Action) => {
 
-    switch (action.type) {
-        case 'any': {
-            const { name, value } = action.payload;
+    console.log(state)
 
-            console.log("reducer", name, value)
-            return {
-                ...state,
-                [name]: value,
-            };
-        }
-        default:
-            return state;
+    if (Object.keys(state).includes(action.type)) {
+        return {
+            ...state,
+            [action.type]: {
+                ...state[action.type],
+                ...action.payload
+            }
+        };
+    } else {
+        return state
     }
 };
 
