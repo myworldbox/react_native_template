@@ -44,11 +44,11 @@ function Info({ navigation, route }: any): JSX.Element {
     <init.react_native.Button title='path' onPress={(e) => {
       e.preventDefault()
 
-      redux.dispatch({ 'account': { age: redux.state.account.age + 1 } })
-      redux.dispatch({ 'account': { name: redux.state.account.name + "-" } })
+      redux.dispatch({ account: { age: redux.state.account.age + 1 } })
+      redux.dispatch({ account: { name: redux.state.account.name + "-" } })
 
-      context.dispatch({ 'account': { age: context.state.account.age + 1 } })
-      context.dispatch({ 'account': { name: context.state.account.name + "-" } })
+      context.dispatch({ account: { age: context.state.account.age + 1 } })
+      context.dispatch({ account: { name: context.state.account.name + "-" } })
 
     }}></init.react_native.Button>
 
