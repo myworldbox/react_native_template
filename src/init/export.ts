@@ -9,10 +9,11 @@ import * as reduxjs from '@reduxjs/toolkit'
 import * as Home from '../screen/home'
 import * as Info from '../screen/info'
 
-import * as context from '../global/context'
+import * as context from '../global/context/context'
+import * as redux from '../global/redux/redux'
+
 import * as dispatch from '../global/dispatch'
 import * as reducer from '../global/reducer'
-import * as redux from '../global/redux'
 import * as variable from '../global/variable'
 
 var writable: any = {
@@ -35,9 +36,10 @@ export {
     reduxjs,
 
     context,
+    redux,
+    
     dispatch,
     reducer,
-    redux,
     variable,
 
     screen,

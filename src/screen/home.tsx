@@ -1,7 +1,5 @@
 import * as init from '../init/export'
 
-import React, { useEffect } from 'react';
-import type { PropsWithChildren } from 'react';
 import {
     SafeAreaView,
     ScrollView,
@@ -23,19 +21,15 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import ScrollAnimation from '../animation/ScrollAnimation';
 
-type SectionProps = PropsWithChildren<{
-    title: string;
-}>;
-
 var { width, height } = Dimensions.get('window')
 
 function Home({ navigation }: any): JSX.Element {
 
-    var context = init.react.useContext(init.writable.value)// init.context.default();
-    var redux = init.redux.default();
+    var context: any = init.context.context()
+    var redux = init.redux.redux();
 
     init.react.useEffect(() => {
-        console.log("redux ---> ",redux.state.path,"\ncontext ---> " ,context.state.path)
+        console.log("redux ---> ", redux.state.path, "\ncontext ---> ", context.state.path)
     }, [redux.state, context.state])
 
     const isDarkMode = useColorScheme() === 'dark';
@@ -65,10 +59,10 @@ function Home({ navigation }: any): JSX.Element {
                 <Button title='no navigation' onPress={(e) => {
                     e.preventDefault()
 
-                    redux.dispatch('path', (redux.state.path?? "") + "-")
+                    redux.dispatch('path', (redux.state.path ?? "") + "-")
                     redux.dispatch('phone_counter', (redux.state.phone_counter ?? 0) + 1)
 
-                    context.dispatch('path', (context.state.path?? "") + "-")
+                    context.dispatch('path', (context.state.path ?? "") + "-")
                     context.dispatch('phone_counter', (context.state.phone_counter ?? 0) + 1)
 
                 }}></Button>

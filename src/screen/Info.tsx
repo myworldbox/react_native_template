@@ -1,18 +1,5 @@
 import * as init from '../init/export'
 
-import React from 'react';
-import type { PropsWithChildren } from 'react';
-import {
-  Dimensions,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
 import {
   Colors,
   DebugInstructions,
@@ -21,14 +8,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-var { width, height } = Dimensions.get('window')
+var { width, height } = init.react_native.Dimensions.get('window')
 
 var container = (_: any) => {
-  return <View style={{
+  return <init.react_native.View style={{
     width: width * _.width,
     height: height * _.height,
     borderWidth: 1,
@@ -37,21 +20,21 @@ var container = (_: any) => {
     {
       _.child
     }
-  </View>
+  </init.react_native.View>
 }
 
 function Info({ navigation, route }: any): JSX.Element {
 
-  var context = init.react.useContext(init.writable.value)// init.context.default();
-  var redux = init.redux.default();
+  var context: any = init.context.context()
+  var redux = init.redux.redux();
 
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = init.react_native.useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  var Main = <View style={{
+  var Main = <init.react_native.View style={{
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
@@ -70,18 +53,18 @@ function Info({ navigation, route }: any): JSX.Element {
     }}></init.react_native.Button>
 
 
-    <Text>{"context['path']: " + context.state['path']}</Text>
-    <Text>{"context['phone_counter']: " + context.state['phone_counter']}</Text>
-    <Text>{"redux['path']: " + redux.state.path}</Text>
-    <Text>{"redux['phone_counter']: " + redux.state.phone_counter}</Text>
+    <init.react_native.Text>{"context['path']: " + context.state['path']}</init.react_native.Text>
+    <init.react_native.Text>{"context['phone_counter']: " + context.state['phone_counter']}</init.react_native.Text>
+    <init.react_native.Text>{"redux['path']: " + redux.state.path}</init.react_native.Text>
+    <init.react_native.Text>{"redux['phone_counter']: " + redux.state.phone_counter}</init.react_native.Text>
 
 
-  </View>
+  </init.react_native.View>
 
   return Main
 }
 
-const styles = StyleSheet.create({
+const styles = init.react_native.StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
