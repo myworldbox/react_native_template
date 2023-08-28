@@ -76,8 +76,12 @@ function Home({ navigation }: any): JSX.Element {
                 <Button title='context' onPress={(e) => {
                     e.preventDefault()
 
-                    context.dispatch({ account: { "age": context.state.account.age + 1 } })
-                    context.dispatch({ account: { "name": context.state.account.name + "-" } })
+                    context.dispatch({
+                        account: {
+                            "age": context.state.account.age + 1,
+                            "name": context.state.account.name + "-"
+                        }
+                    })
                     context.dispatch({ account: { "setting.payment.credit_card.visa.name": "context" } })
 
                 }}></Button>
