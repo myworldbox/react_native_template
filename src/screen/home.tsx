@@ -23,18 +23,31 @@ import ScrollAnimation from '../animation/ScrollAnimation';
 
 var { width, height } = Dimensions.get('window')
 
+const deeply = (originalObj: any, objectName: any, value: any) => {
+    // Split the nested object name into an array of keys
+    const keys = objectName.split('.');
+
+    // Create a deep copy of the original object
+    const updatedObj = JSON.parse(JSON.stringify(originalObj));
+
+    // Get a reference to the nested object
+    let nestedObj = updatedObj;
+    for (let i = 0; i < keys.length - 1; i++) {
+        const key = keys[i];
+        nestedObj = nestedObj[key];
+    }
+
+    // Update the nested object with the new value
+    const lastKey = keys[keys.length - 1];
+    nestedObj[lastKey] = value;
+
+    return updatedObj;
+};
+
 function Home({ navigation }: any): JSX.Element {
 
     var [context, redux]: any = Object.keys(init.state).map((stack: any) => init.state[stack]())
     var style = init.style.default
-
-    init.react.useEffect(() => {
-
-        if (context && redux) {
-            console.log(context, redux, () => { })
-        }
-
-    }, [context, redux])
 
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -60,15 +73,26 @@ function Home({ navigation }: any): JSX.Element {
 
                 }}></Button>
 
-                <Button title='no navigation' onPress={(e) => {
+                <Button title='context' onPress={(e) => {
                     e.preventDefault()
-
-                    console.log("yoyo", redux.state.account.age)
-                    redux.dispatch({ account: { "account.age": redux.state.account.age + 1 } })
-                    redux.dispatch({ account: { "name": redux.state.account.name + "-" } })
 
                     context.dispatch({ account: { "age": context.state.account.age + 1 } })
                     context.dispatch({ account: { "name": context.state.account.name + "-" } })
+                    context.dispatch({ account: { "setting": deeply(context.state.account.setting, "payment.credit_card.visa.name", "context") } })
+
+                    console.log(deeply(context.state.account.setting, "payment.credit_card.visa.name", "context").payment.credit_card.visa)
+
+
+                }}></Button>
+
+                <Button title='redux' onPress={(e) => {
+                    e.preventDefault()
+
+                    redux.dispatch({ account: { "age": redux.state.account.age + 1 } })
+                    redux.dispatch({ account: { "name": redux.state.account.name + "-" } })
+                    redux.dispatch({ account: { "setting": deeply(redux.state.account.setting, "payment.credit_card.visa.name", "redux") } })
+
+                    console.log(deeply(redux.state.account.setting, "payment.credit_card.visa.name", "redux").payment.credit_card.visa)
 
                 }}></Button>
 
