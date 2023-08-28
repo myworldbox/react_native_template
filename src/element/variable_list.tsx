@@ -35,21 +35,15 @@ const DisplayNestedJSON = ({ data }: any) => {
 
 var variable_list = () => {
 
-    var state: any = {
-        context: init.context.context(),
-        redux: init.redux.redux()
-    }
-
     return <init.react_native.View style={{ width: '100%', flexDirection: 'column' }}>
         {
-            Object.keys(state).map((stack: any) => {
+            Object.keys(init.state).map((stack: any) => {
 
                 return <init.react_native.View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5 }}>
 
                     <init.react_native.Text>{stack}</init.react_native.Text>
                     {
-                        state[stack].state &&
-                        <DisplayNestedJSON data={state[stack].state} />
+                        <DisplayNestedJSON data={init.state[stack]().state} />
                     }
                 </init.react_native.View>
             })

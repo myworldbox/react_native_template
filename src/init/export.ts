@@ -8,10 +8,6 @@ import * as reduxjs from '@reduxjs/toolkit'
 
 import * as variable_list from '../element/variable_list'
 
-var element: any = {
-    variable_list
-}
-
 import * as Home from '../screen/home'
 import * as Info from '../screen/info'
 
@@ -27,9 +23,17 @@ var writable: any = {
     writable: true
 }
 
+var element: any = {
+    variable_list: variable_list
+}
+
 var screen: any = {
     Home: Home.default,
     Info: Info.default
+}
+var state: any = {
+    context: context.context,
+    redux: redux.redux
 }
 
 export {
@@ -50,6 +54,7 @@ export {
     variable,
 
     screen,
+    state,
 
     writable
 }

@@ -18,7 +18,8 @@ var variable: any = {
                         ]
                     },
                     master: ""
-                }
+                },
+                alipay: {}
             }
         }
     },
