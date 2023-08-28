@@ -11,12 +11,12 @@ import * as variable_list from '../element/variable_list'
 import * as Home from '../screen/home'
 import * as Info from '../screen/info'
 
-import * as context from '../global/context/context'
-import * as redux from '../global/redux/redux'
+import * as context from '../state/context/context'
+import * as redux from '../state/redux/redux'
 
-import * as dispatch from '../global/dispatch'
-import * as reducer from '../global/reducer'
-import * as variable from '../global/variable'
+import * as dispatch from '../state/dispatch'
+import * as reducer from '../state/reducer'
+import * as variable from '../state/variable'
 
 var writable: any = {
     value: undefined,
