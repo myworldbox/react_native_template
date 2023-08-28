@@ -1,6 +1,6 @@
 import * as init from './src/init/export'
 
-init.writable.value = init.context.store();
+init.writable.value = init.context.creator();
 const redux_store = init.redux.store()
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <init.react_redux.Provider store={redux_store}>
-      <init.writable.value.Provider value={init.context.creator()}>
+      <init.writable.value.Provider value={init.context.store()}>
 
         <init.react_navigation_native.NavigationContainer>
           <Stack.Navigator>

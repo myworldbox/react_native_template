@@ -63,11 +63,11 @@ function Home({ navigation }: any): JSX.Element {
                 <Button title='no navigation' onPress={(e) => {
                     e.preventDefault()
 
-                    redux.dispatch({ account: { age: redux.state.account.age + 1 } })
-                    redux.dispatch({ account: { name: redux.state.account.name + "-" } })
+                    redux.dispatch({ account: { "age": redux.state.account.age + 1 } })
+                    redux.dispatch({ account: { "name": redux.state.account.name + "-" } })
 
-                    context.dispatch({ account: { age: context.state.account.age + 1 } })
-                    context.dispatch({ account: { name: context.state.account.name + "-" } })
+                    context.dispatch({ account: { "age": context.state.account.age + 1 } })
+                    context.dispatch({ account: { "name": context.state.account.name + "-" } })
 
                 }}></Button>
 

@@ -4,7 +4,23 @@ var variable: any = {
         name: "",
         age: 0,
         score: 0,
-        school: ""
+        school: "",
+        setting: {
+            lang: "",
+            theme: "",
+            payment: {
+                credit_card: {
+                    visa: {
+                        name: "",
+                        number: "",
+                        array: [
+                            0, 1, 2
+                        ]
+                    },
+                    master: ""
+                }
+            }
+        }
     },
 
     system: {
