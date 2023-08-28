@@ -35,13 +35,15 @@ const DisplayNestedJSON = ({ data }: any) => {
 
 var variable_list = () => {
 
+    var style: any = init.style.default
+
     return <init.react_native.View style={{ width: '100%', flexDirection: 'column' }}>
         {
             Object.keys(init.state).map((stack: any) => {
 
                 return <init.react_native.View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5 }}>
 
-                    <init.react_native.Text>{stack}</init.react_native.Text>
+                    <init.react_native.Text style={[style.center]}>{stack}</init.react_native.Text>
                     {
                         <DisplayNestedJSON data={init.state[stack]().state} />
                     }

@@ -25,12 +25,13 @@ var { width, height } = Dimensions.get('window')
 
 function Home({ navigation }: any): JSX.Element {
 
-    var [context, redux] = Object.keys(init.state).map((stack: any) => init.state ? init.state[stack]() : null)
+    var [context, redux]: any = Object.keys(init.state).map((stack: any) => init.state[stack]())
+    var style = init.style.default
 
     init.react.useEffect(() => {
 
         if (context && redux) {
-            console.log(context, redux, ()=>{})
+            console.log(context, redux, () => { })
         }
 
     }, [context, redux])
@@ -62,7 +63,8 @@ function Home({ navigation }: any): JSX.Element {
                 <Button title='no navigation' onPress={(e) => {
                     e.preventDefault()
 
-                    redux.dispatch({ account: { "age": redux.state.account.age + 1 } })
+                    console.log("yoyo", redux.state.account.age)
+                    redux.dispatch({ account: { "account.age": redux.state.account.age + 1 } })
                     redux.dispatch({ account: { "name": redux.state.account.name + "-" } })
 
                     context.dispatch({ account: { "age": context.state.account.age + 1 } })

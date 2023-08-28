@@ -2,7 +2,6 @@ import * as react from 'react';
 import * as react_native from 'react-native';
 import * as react_navigation_native from '@react-navigation/native';
 import * as react_navigation_native_stack from '@react-navigation/native-stack';
-
 import * as react_redux from 'react-redux'
 import * as reduxjs from '@reduxjs/toolkit'
 
@@ -17,6 +16,8 @@ import * as redux from '../state/redux/redux'
 import * as dispatch from '../state/dispatch'
 import * as reducer from '../state/reducer'
 import * as variable from '../state/variable'
+
+import * as style from '../style/style'
 
 var writable: any = {
     value: undefined,
@@ -54,6 +55,8 @@ export {
     element,
     screen,
     state,
+
+    style,
 
     writable
 }
