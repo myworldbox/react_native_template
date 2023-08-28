@@ -25,15 +25,15 @@ var { width, height } = Dimensions.get('window')
 
 function Home({ navigation }: any): JSX.Element {
 
-    var [context, redux] = Object.keys(init.state).map((stack: any) => init.state[stack])
+    var [context, redux] = Object.keys(init.state).map((stack: any) => init.state ? init.state[stack]() : null)
 
     init.react.useEffect(() => {
 
-        if (context.state && redux.state) {
-
+        if (context && redux) {
+            console.log(context, redux, ()=>{})
         }
 
-    }, [context.state, redux.state])
+    }, [context, redux])
 
     const isDarkMode = useColorScheme() === 'dark';
 
