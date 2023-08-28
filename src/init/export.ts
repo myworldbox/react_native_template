@@ -24,7 +24,7 @@ var writable: any = {
 }
 
 var element: any = {
-    variable_list: variable_list
+    variable_list: variable_list.default
 }
 
 var screen: any = {
@@ -44,8 +44,6 @@ export {
     react_redux,
     reduxjs,
 
-    element,
-
     context,
     redux,
 
@@ -53,6 +51,7 @@ export {
     reducer,
     variable,
 
+    element,
     screen,
     state,
 

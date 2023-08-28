@@ -25,8 +25,7 @@ var { width, height } = Dimensions.get('window')
 
 function Home({ navigation }: any): JSX.Element {
 
-    var context: any = init.context.context()
-    var redux = init.redux.redux();
+    var [context, redux] = Object.keys(init.state).map((stack: any) => init.state[stack])
 
     init.react.useEffect(() => {
 
@@ -72,7 +71,7 @@ function Home({ navigation }: any): JSX.Element {
                 }}></Button>
 
                 {
-                    init.element.variable_list.default()
+                    init.element.variable_list()
                 }
 
                 <View

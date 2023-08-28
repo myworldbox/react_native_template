@@ -53,7 +53,7 @@ function Info({ navigation, route }: any): JSX.Element {
     }}></init.react_native.Button>
 
     {
-      init.element.variable_list.default()
+      init.element.variable_list()
     }
 
   </init.react_native.View>
