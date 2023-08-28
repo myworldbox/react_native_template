@@ -78,10 +78,7 @@ function Home({ navigation }: any): JSX.Element {
 
                     context.dispatch({ account: { "age": context.state.account.age + 1 } })
                     context.dispatch({ account: { "name": context.state.account.name + "-" } })
-                    context.dispatch({ account: { "setting": deeply(context.state.account.setting, "payment.credit_card.visa.name", "context") } })
-
-                    console.log(deeply(context.state.account.setting, "payment.credit_card.visa.name", "context").payment.credit_card.visa)
-
+                    context.dispatch({ account: { "setting.payment.credit_card.visa.name": "context" } })
 
                 }}></Button>
 
@@ -90,9 +87,7 @@ function Home({ navigation }: any): JSX.Element {
 
                     redux.dispatch({ account: { "age": redux.state.account.age + 1 } })
                     redux.dispatch({ account: { "name": redux.state.account.name + "-" } })
-                    redux.dispatch({ account: { "setting": deeply(redux.state.account.setting, "payment.credit_card.visa.name", "redux") } })
-
-                    console.log(deeply(redux.state.account.setting, "payment.credit_card.visa.name", "redux").payment.credit_card.visa)
+                    redux.dispatch({ account: { "setting.payment.credit_card.visa.name": "redux" } })
 
                 }}></Button>
 
