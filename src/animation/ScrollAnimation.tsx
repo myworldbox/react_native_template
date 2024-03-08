@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { View, ScrollView, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 
-const ComponentA = ({ onScroll }) => {
+const ComponentA = ({ onScroll }: any) => {
   return (
     <ScrollView onScroll={onScroll}>
       <View style={styles.container}>

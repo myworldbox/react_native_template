@@ -1,22 +1,21 @@
-import * as init from '../../init/export'
+import { useReducer, useContext, createContext } from 'react'
+import reducer from '../reducer'
+import variable from '../variable'
+import dispatch from '../dispatch'
+import Var from '../../model/var'
 
-var store = () => {
+const context = {
+    creator() {
+        var [state, dispatcher]: any = useReducer(reducer, variable)
 
-    var [state, dispatcher]: any = init.react.useReducer(init.reducer.default, init.variable.default)
-
-    return { state, dispatch: (value: any) => init.dispatch.default(dispatcher, value) }
+        return { state, dispatch: (value: any) => dispatch(dispatcher, value) }
+    },
+    context() {
+        return useContext(Var.store)
+    },
+    store() {
+        return createContext(variable)
+    }
 }
 
-var context = () => {
-    return init.react.useContext(init.writable.value)
-}
-
-var creator = () => {
-    return init.react.createContext(init.variable.default)
-}
-
-export {
-    store,
-    context,
-    creator
-}
+export default context

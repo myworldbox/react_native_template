@@ -1,5 +1,4 @@
-import * as init from '../init/export'
-
+import { Button, Dimensions, StyleSheet, View, useColorScheme } from 'react-native';
 import {
   Colors,
   DebugInstructions,
@@ -7,11 +6,12 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import variable_list from '../element/variable_list';
 
-var { width, height } = init.react_native.Dimensions.get('window')
+var { width, height } = Dimensions.get('window')
 
 var container = (_: any) => {
-  return <init.react_native.View style={{
+  return <View style={{
     width: width * _.width,
     height: height * _.height,
     borderWidth: 1,
@@ -20,28 +20,28 @@ var container = (_: any) => {
     {
       _.child
     }
-  </init.react_native.View>
+  </View>
 }
 
 function Info({ navigation, route }: any): JSX.Element {
 
-  var context: any = init.context.context()
-  var redux = init.redux.redux();
+  var context: any = context.context()
+  var redux: any = redux.redux();
 
-  const isDarkMode = init.react_native.useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  var Main = <init.react_native.View style={{
+  var Main = <View style={{
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
   }}>
 
-    <init.react_native.Button title='path' onPress={(e) => {
+    <Button title='path' onPress={(e) => {
       e.preventDefault()
 
       redux.dispatch({ account: { age: redux.state.account.age + 1 } })
@@ -50,18 +50,18 @@ function Info({ navigation, route }: any): JSX.Element {
       context.dispatch({ account: { age: context.state.account.age + 1 } })
       context.dispatch({ account: { name: context.state.account.name + "-" } })
 
-    }}></init.react_native.Button>
+    }}></Button>
 
     {
-      init.element.variable_list()
+      variable_list(context.state)
     }
 
-  </init.react_native.View>
+  </View>
 
   return Main
 }
 
-const styles = init.react_native.StyleSheet.create({
+const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,

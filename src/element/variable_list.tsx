@@ -1,57 +1,56 @@
-import * as init from '../init/export'
+import { View, Text } from 'react-native';
+import style from '../style/style';
 
 const DisplayNestedJSON = ({ data }: any) => {
     const renderValue = (value: any) => {
         if (typeof value === 'object') {
             if (Array.isArray(value)) {
                 return (
-                    <init.react_native.View>
+                    <View>
                         {value.map((item, index) => (
-                            <init.react_native.View style={{ flexDirection: 'row' }} key={index}>
+                            <View style={{ flexDirection: 'row' }} key={index}>
                                 <DisplayNestedJSON data={item} />
-                            </init.react_native.View>
+                            </View>
                         ))}
-                    </init.react_native.View>
+                    </View>
                 );
             } else {
                 return (
-                    <init.react_native.View>
+                    <View>
                         {Object.keys(value).map((key) => (
-                            <init.react_native.View style={{ flexDirection: 'row' }} key={key} >
-                                <init.react_native.Text>{key} - </init.react_native.Text>
+                            <View style={{ flexDirection: 'row' }} key={key} >
+                                <Text>{key} - </Text>
                                 <DisplayNestedJSON data={value[key]} />
-                            </init.react_native.View>
+                            </View>
                         ))}
-                    </init.react_native.View>
+                    </View>
                 );
             }
         } else {
-            return <init.react_native.Text>{value}</init.react_native.Text>;
+            return <Text>{value}</Text>;
         }
     };
 
-    return <init.react_native.View>{renderValue(data)}</init.react_native.View>;
+    return <View>{renderValue(data)}</View>;
 };
 
-var variable_list = () => {
+var variable_list = (state: any) => {
 
-    var style: any = init.style.default
-
-    return <init.react_native.View style={{ width: '100%', flexDirection: 'column' }}>
+    return <View style={{ width: '100%', flexDirection: 'column' }}>
         {
-            Object.keys(init.state).map((stack: any) => {
+            Object.keys(state).map((stack: any) => {
 
-                return <init.react_native.View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5 }}>
+                return <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5 }}>
 
-                    <init.react_native.Text style={[style.center]}>{stack}</init.react_native.Text>
+                    <Text style={[style.center]}>{stack}</Text>
                     {
-                        <DisplayNestedJSON data={init.state[stack]().state} />
+                        <DisplayNestedJSON data={state[stack]().state} />
                     }
-                </init.react_native.View>
+                </View>
             })
         }
 
-    </init.react_native.View>
+    </View>
 }
 
 export default variable_list

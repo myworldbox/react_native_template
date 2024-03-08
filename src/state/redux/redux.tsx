@@ -1,18 +1,20 @@
-import * as init from '../../init/export'
+import { configureStore } from '@reduxjs/toolkit/dist/configureStore';
+import reducer from '../reducer';
+import dispatch from '../dispatch';
+import { useDispatch, useSelector } from 'react-redux';
 
-var store = () => {
-    return init.reduxjs.configureStore({ reducer: init.reducer.default })
+const redux = {
+    store() {
+        return configureStore({ reducer: reducer })
+    },
+    creator() {
+
+        var state = useSelector((state: any) => state);
+        var dispatcher = useDispatch()
+
+        return { state, dispatch: (value: any) => dispatch(dispatcher, value) }
+    }
 }
 
-var redux = () => {
 
-    var state = init.react_redux.useSelector((state: any) => state);
-    var dispatcher = init.react_redux.useDispatch()
-
-    return { state, dispatch: (value: any) => init.dispatch.default(dispatcher, value) }
-}
-
-export {
-    store,
-    redux
-}
+export default redux;

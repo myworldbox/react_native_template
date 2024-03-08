@@ -1,25 +1,25 @@
-import * as init from '../init/export'
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 const ScrollableText = () => {
   const wordArray = ['apple', 'banana', 'cherry', 'date', 'elderberry'];
 
   const renderItem = ({ item }: any) => (
-    <init.react_native.Text style={styles.item}>{item}</init.react_native.Text>
+    <Text style={styles.item}>{item}</Text>
   );
 
   return (
-    <init.react_native.View style={{}}><init.react_native.FlatList
+    <View style={{}}><FlatList
       data={wordArray}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}
       horizontal
       showsHorizontalScrollIndicator={false}
-    /></init.react_native.View>
+    /></View>
 
   );
 };
 
-const styles = init.react_native.StyleSheet.create({
+const styles = StyleSheet.create({
   item: {
     fontSize: 20,
     padding: 10,

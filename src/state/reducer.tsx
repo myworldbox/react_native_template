@@ -1,8 +1,8 @@
-import * as init from '../init/export'
+import variable from "./variable";
 
 type Action = { type: any; payload: any };
 
-const reducer = (state: any = init.variable.default, action: Action) => {
+const reducer = (state: any = variable, action: Action) => {
 
     const newState = JSON.parse(JSON.stringify(state))
   

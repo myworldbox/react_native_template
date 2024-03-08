@@ -1,5 +1,3 @@
-import * as init from '../init/export'
-
 import {
     SafeAreaView,
     ScrollView,
@@ -20,6 +18,7 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import ScrollAnimation from '../animation/ScrollAnimation';
+import variable_list from '../element/variable_list';
 
 var { width, height } = Dimensions.get('window')
 
@@ -46,8 +45,8 @@ const deeply = (originalObj: any, objectName: any, value: any) => {
 
 function Home({ navigation }: any): JSX.Element {
 
-    var [context, redux]: any = Object.keys(init.state).map((stack: any) => init.state[stack]())
-    var style = init.style.default
+    var context: any = context.creator();
+    var redux: any = redux.creator();
 
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -96,7 +95,7 @@ function Home({ navigation }: any): JSX.Element {
                 }}></Button>
 
                 {
-                    init.element.variable_list()
+                    variable_list(redux.state)
                 }
 
                 <View
