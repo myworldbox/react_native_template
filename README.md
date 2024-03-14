@@ -1,4 +1,4 @@
-# mynativebox
+# react_native_template
 
 React Native Competitive Programming
 

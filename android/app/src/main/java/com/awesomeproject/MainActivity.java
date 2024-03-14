@@ -1,4 +1,4 @@
-package com.mynativebox;
+package com.react_native_template;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "mynativebox";
+    return "react_native_template";
   }
 
   /**

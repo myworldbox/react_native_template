@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.mynativebox"
+    namespace "com.react_native_template"
     defaultConfig {
-        applicationId "com.mynativebox"
+        applicationId "com.react_native_template"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
