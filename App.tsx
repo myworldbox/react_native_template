@@ -4,10 +4,13 @@ import Var from "./src/model/var";
 import { NavigationContainer } from "@react-navigation/native";
 import Const from "./src/model/const";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import context from "./src/state/kit/context";
 
 const App = () => {
 
   const Stack = createNativeStackNavigator();
+  Var.store = context.store();
+  Var.context = context.context();
 
   return (
 
