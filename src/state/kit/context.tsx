@@ -1,6 +1,6 @@
 import { useReducer, useContext, createContext } from 'react'
 import reducer from '../reducer'
-import variable from '../variable'
+import variable from '../../model/variable'
 import dispatch from '../dispatch'
 import Var from '../../model/var'
 

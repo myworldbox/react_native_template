@@ -19,6 +19,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import ScrollAnimation from '../animation/ScrollAnimation';
 import variable_list from '../element/variable_list';
+import context from '../state/kit/context';
+import redux from '../state/kit/redux';
 
 var { width, height } = Dimensions.get('window')
 
@@ -45,8 +47,8 @@ const deeply = (originalObj: any, objectName: any, value: any) => {
 
 function Home({ navigation }: any): JSX.Element {
 
-    var context: any = context.creator();
-    var redux: any = redux.creator();
+    var _context: any = context.creator();
+    var _redux: any = redux.creator();
 
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -75,27 +77,31 @@ function Home({ navigation }: any): JSX.Element {
                 <Button title='context' onPress={(e) => {
                     e.preventDefault()
 
-                    context.dispatch({
+                    _context.dispatch({
                         account: {
-                            "age": context.state.account.age + 1,
-                            "name": context.state.account.name + "-"
+                            "age": _context.state.account.age + 1,
+                            "name": _context.state.account.name + "-"
                         }
                     })
-                    context.dispatch({ account: { "setting.payment.credit_card.visa.name": "context" } })
+                    _context.dispatch({ account: { "setting.payment.credit_card.visa.name": "context" } })
 
                 }}></Button>
 
                 <Button title='redux' onPress={(e) => {
                     e.preventDefault()
 
-                    redux.dispatch({ account: { "age": redux.state.account.age + 1 } })
-                    redux.dispatch({ account: { "name": redux.state.account.name + "-" } })
-                    redux.dispatch({ account: { "setting.payment.credit_card.visa.name": "redux" } })
+                    _redux.dispatch({ account: { "age": _redux.state.account.age + 1 } })
+                    _redux.dispatch({ account: { "name": _redux.state.account.name + "-" } })
+                    _redux.dispatch({ account: { "setting.payment.credit_card.visa.name": "redux" } })
 
                 }}></Button>
 
                 {
-                    variable_list(redux.state)
+                    variable_list(_redux.state)
+                }
+
+                {
+                    variable_list(_context.state)
                 }
 
                 <View

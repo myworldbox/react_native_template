@@ -44,7 +44,7 @@ var variable_list = (state: any) => {
 
                     <Text style={[style.center]}>{stack}</Text>
                     {
-                        <DisplayNestedJSON data={state[stack]().state} />
+                        <DisplayNestedJSON data={state[stack]} />
                     }
                 </View>
             })

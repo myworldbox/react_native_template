@@ -1,4 +1,4 @@
-import variable from "./variable";
+import variable from "../model/variable";
 
 type Action = { type: any; payload: any };
 

@@ -7,6 +7,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import variable_list from '../element/variable_list';
+import context from '../state/kit/context';
+import redux from '../state/kit/redux';
 
 var { width, height } = Dimensions.get('window')
 
@@ -25,8 +27,8 @@ var container = (_: any) => {
 
 function Info({ navigation, route }: any): JSX.Element {
 
-  var context: any = context.context()
-  var redux: any = redux.redux();
+  var _context: any = context.creator()
+  var _redux: any = redux.creator();
 
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -44,16 +46,16 @@ function Info({ navigation, route }: any): JSX.Element {
     <Button title='path' onPress={(e) => {
       e.preventDefault()
 
-      redux.dispatch({ account: { age: redux.state.account.age + 1 } })
-      redux.dispatch({ account: { name: redux.state.account.name + "-" } })
+      _redux.dispatch({ account: { age: _redux.state.account.age + 1 } })
+      _redux.dispatch({ account: { name: _redux.state.account.name + "-" } })
 
-      context.dispatch({ account: { age: context.state.account.age + 1 } })
-      context.dispatch({ account: { name: context.state.account.name + "-" } })
+      _context.dispatch({ account: { age: _context.state.account.age + 1 } })
+      _context.dispatch({ account: { name: _context.state.account.name + "-" } })
 
     }}></Button>
 
     {
-      variable_list(context.state)
+      variable_list(_context.state)
     }
 
   </View>
