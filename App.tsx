@@ -1,31 +1,35 @@
-import * as init from './src/init/export'
-
-init.writable.value = init.context.creator();
-const redux_store = init.redux.store()
+import { Provider } from "react-redux";
+import redux from "./src/state/kit/redux";
+import Var from "./src/model/var";
+import { NavigationContainer } from "@react-navigation/native";
+import Const from "./src/model/const";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const App = () => {
 
-  const Stack = init.react_navigation_native_stack.createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
 
   return (
-    <init.react_redux.Provider store={redux_store}>
-      <init.writable.value.Provider value={init.context.store()}>
 
-        <init.react_navigation_native.NavigationContainer>
+    <Provider store={redux.store()}>
+      <Var.store.Provider value={Var.context}>
+
+        <NavigationContainer>
           <Stack.Navigator>
 
-            {Object.keys(init.screen).map((child: any, i: any) => {
+            {
+              Object.keys(Const.screen).map((child: any, i: any) => {
 
-              return <Stack.Screen
-                name={child}
-                component={init.screen[child]}
-              />
-            })}
+                return <Stack.Screen
+                  name={child}
+                  component={Const.screen[child]}
+                />
+              })}
 
           </Stack.Navigator>
-        </init.react_navigation_native.NavigationContainer>
-      </init.writable.value.Provider>
-    </init.react_redux.Provider>
+        </NavigationContainer>
+      </Var.store.Provider>
+    </Provider>
   );
 };
 
