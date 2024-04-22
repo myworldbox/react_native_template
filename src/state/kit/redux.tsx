@@ -4,11 +4,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import reducer from "../reducer";
 
 class redux {
-  static store = () => {
+  static init = () => {
     return configureStore({ reducer: reducer });
   };
 
-  static creator = () => {
+  static getter = () => {
     var state = useSelector((state: any) => state);
     var dispatcher = useDispatch();
 

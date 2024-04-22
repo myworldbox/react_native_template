@@ -1,21 +1,24 @@
 import { Provider } from "react-redux";
 import redux from "./src/state/kit/redux";
-import Var from "./src/model/var";
 import { NavigationContainer } from "@react-navigation/native";
 import Const from "./src/model/const";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import context from "./src/state/kit/context";
+import Var from "./src/model/var";
 
 const App = () => {
 
   const Stack = createNativeStackNavigator();
-  Var.store = context.store();
-  Var.context = context.context();
+
+  Var.context.provider = context.provider();
+  
+  Var.redux.init = redux.init();
+  Var.context.init = context.init();
 
   return (
 
-    <Provider store={redux.store()}>
-      <Var.store.Provider value={Var.context}>
+    <Provider store={Var.redux.init}>
+      <Var.context.provider.Provider value={Var.context.init}>
 
         <NavigationContainer>
           <Stack.Navigator>
@@ -31,7 +34,7 @@ const App = () => {
 
           </Stack.Navigator>
         </NavigationContainer>
-      </Var.store.Provider>
+      </Var.context.provider.Provider>
     </Provider>
   );
 };

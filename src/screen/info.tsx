@@ -27,8 +27,8 @@ var container = (_: any) => {
 
 function Info({ navigation, route }: any): JSX.Element {
 
-  var _context: any = context.creator()
-  var _redux: any = redux.creator();
+  var _context: any = context.getter()
+  var _redux: any = redux.getter();
 
   const isDarkMode = useColorScheme() === 'dark';
 

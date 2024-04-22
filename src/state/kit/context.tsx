@@ -5,15 +5,15 @@ import dispatch from '../dispatch'
 import Var from '../../model/var'
 
 const context = {
-    creator() {
+    init() {
+        return useContext(Var.context.provider)
+    },
+    getter() {
         var [state, dispatcher]: any = useReducer(reducer, variable)
 
         return { state, dispatch: (value: any) => dispatch(dispatcher, value) }
     },
-    context() {
-        return useContext(Var.store)
-    },
-    store() {
+    provider() {
         return createContext(variable)
     }
 }
