@@ -27,6 +27,7 @@ const App = () => {
               Object.keys(Const.screen).map((child: any, i: any) => {
 
                 return <Stack.Screen
+                  key={i}
                   name={child}
                   component={Const.screen[child]}
                 />

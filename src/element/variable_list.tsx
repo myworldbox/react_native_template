@@ -38,9 +38,9 @@ var variable_list = (state: any) => {
 
     return <View style={{ width: '100%', flexDirection: 'column' }}>
         {
-            Object.keys(state).map((stack: any) => {
+            Object.keys(state).map((stack: any, i) => {
 
-                return <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5 }}>
+                return <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5 }} key={i}>
 
                     <Text style={[style.center]}>{stack}</Text>
                     {

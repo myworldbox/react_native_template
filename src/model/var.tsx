@@ -1,12 +1,12 @@
 const Var = {
     redux: {
-      init: undefined as any,
-      provider: undefined as any,
+      init: undefined,
+      provider: undefined,
     },
     context: {
-      init: undefined as any,
-      provider: undefined as any,
+      init: undefined,
+      provider: undefined,
     },
-  };
+  } as any;
   
   export default Var;
